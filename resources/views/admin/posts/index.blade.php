@@ -6,7 +6,7 @@
 
 <h1>Posts</h1>
 
-<table>
+<table class="table>"
     <thead>
         <tr>
             <th>ID</th>
@@ -25,11 +25,11 @@
         @foreach($posts as $post)
         <tr>
             <td>{{$post->id}}</td>
-            <td><img height="50" src="{{$post->photo ? $post->photo->file : 'https://placehold.it/400x400'}}" alt="{{$post->photo_id}}"></td>
-            <td>{{$post->user->name}}</td>
+            <td><img height="50" src="{{$post->photo ? '/images/'. $post->photo->file : 'https://placehold.it/400x400'}}" alt="{{$post->photo_id}}"></td>
+        <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
             <td>{{$post->category ? $post->category->name : "Uncategorized"}}</td>
             <td>{{$post->title}}</td>
-            <td>{{$post->body}}</td>
+            <td>{{str_limit($post->body, 30)}}</td>
             <td>{{$post->created_at->diffForhumans()}}</td>
             <td>{{$post->updated_at->diffForhumans()}}</td>
         </tr>

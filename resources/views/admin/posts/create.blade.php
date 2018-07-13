@@ -6,7 +6,7 @@
 <h1>Create Post</h1>
 <div class="row">
 
-    {!! Form::open(['method'=>'POST', 'action' => 'AdminPostsController@store']) !!}
+    {!! Form::open(['method'=>'POST', 'action' => 'AdminPostsController@store', 'files'=>true]) !!}
 
     <div class="form-group">
         {!! Form::label('title', 'Title:') !!}
@@ -30,7 +30,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Create Post', ['class'=> 'btn btn-primary'])!!}
+        {!! Form::submit('Create Post', ['class'=> 'btn btn-primary col-sm-6'])!!}
     </div>
     {!! Form::close() !!}
 </div>
