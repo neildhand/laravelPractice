@@ -22,16 +22,6 @@ class AdminCategoriesController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -68,6 +58,8 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         //
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -80,6 +72,9 @@ class AdminCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return redirect('/admin/categories');
     }
 
     /**
@@ -91,5 +86,8 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
+
+        Category::findOrFail($id)->delete();
+        return redirect('/admin/categories');
     }
 }
