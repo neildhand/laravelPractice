@@ -3,7 +3,7 @@
 
 @section('content')
 
-<h1>Comments</h1>
+    <h1>Comments</h1>
 
     @if(count($comments)>0)
 
@@ -19,13 +19,11 @@
                 @foreach($comments as $comment)
 
                     <tr>
-                        <td>{{$comment->id}}</td>
+                        <td>{{ $comment->id}}</td>
                         <td>{{$comment->author}}</td>
                         <td>{{$comment->email}}</td>
                         <td>{{$comment->body}}</td>
                         <td><a href="{{route('home.post', $comment->post->id)}}">View Post</a></td>
-
-                        <td><a href="{{route('admin.comment.replies.show', $comment->id)}}">View Replies</a></td>
                         
                         <td>
 
@@ -62,7 +60,6 @@
                             <div class="form-group">
                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger'])!!}
                             </div>
-                            {!! Form::close() !!}
                         </td>
                     </tr>
 

@@ -33,11 +33,11 @@ class User extends Authenticatable
     }
 
 
-    public function setPasswordAttribute($password){
-        if(!empty($password)){
-            $this->attributes['password'] = bcrypt($password);
-        }
-    }
+    // public function setPasswordAttribute($password){
+    //     if(!empty($password)){
+    //         $this->attributes['password'] = bcrypt($password);
+    //     }
+    // }
 
     public function isAdmin(){
         if($this->role->name == 'administrator' && $this->is_active == 1){
@@ -48,5 +48,12 @@ class User extends Authenticatable
 
     public function posts(){
         return $this->hasMany('App\Post');
+    }
+
+
+    public function getGravatarAttribute(){
+        $hash = md5(strtolower(trim($this->attributes['email']))) . "?d=mm&s=";
+
+        return 'http://www.gravatar.com/avatar/$hash';
     }
 }
